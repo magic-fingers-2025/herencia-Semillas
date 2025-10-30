@@ -1,0 +1,35 @@
+import Plantas.*
+
+describe "Tests Plantas" {
+
+  const menta1 = new Menta(anioObtencion = 2006, altura = 1)
+  const menta2 = new Menta(anioObtencion = 2006, altura = 0.3)
+  const soja1 = new Soja(anioObtencion = 2009, altura = 0.6)
+  const quinoa1 = new Quinoa(horasDeSolToleradas = 12, anioObtencion = 2010, altura = 0.5)
+  const quinoa2 = new Quinoa(horasDeSolToleradas = 9, anioObtencion = 2001, altura = 0.5)
+
+  test "Una menta de 1 metro da semillas y ocupa un espacio de 3 metros cuadrados" {
+    assert.that(menta1.daNuevasSemillas())
+    assert.equals(3, menta1.espacioOcupado())
+  }
+
+  test "una menta de solo 0.3 metros no da semillas y ocupa 0.9 metros cuadrados de espacio." {
+    assert.notThat(menta2.daNuevasSemillas())
+    assert.equals(0.9, menta2.espacioOcupado())
+  }
+
+  test "una soja de 0.6 metros y de semilla de 2009, tiene tolerancia al sol de 7 horas, no da semillas y ocupa 0.3 metros cuadrados." {
+    assert.equals(7, soja1.horasDeSolToleradas())
+    assert.notThat(soja1.daNuevasSemillas())
+    assert.equals(0.3, soja1.espacioOcupado())
+  }
+
+  test "Una quinoa que tolera 12 horas de sol y su semilla de origen es de 2010, no da semillas."{
+    assert.that(quinoa1.daNuevasSemillas())
+  }
+
+  test "Una quinoa que tolera 9 horas de sol y su semilla de origen es de 2001, da semillas."{
+    assert.that(quinoa2.daNuevasSemillas())
+  }
+
+}

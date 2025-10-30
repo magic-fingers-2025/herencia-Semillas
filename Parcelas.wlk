@@ -20,12 +20,20 @@ class Parcela {
                                                 ) + largo
   
   method tieneComplicaciones() = plantas.any(
+<<<<<<< HEAD
     { p => p.horasDeSolQueTolera() < horasDeSolPorDia }
+=======
+    { p => p.horasDeSolToleradas() < horasDeSolPorDia }
+>>>>>>> origin/ParcelasYParcelasIdeales
   )
   
   method puedePlantar(
     unaPlanta
+<<<<<<< HEAD
   ) = ((unaPlanta.horasDeSolQueTolera() + 2) >= horasDeSolPorDia) && (self.cantidadDePlantas() < self.cantidadMaximaDePlantasToleradas())
+=======
+  ) = ((unaPlanta.horasDeSolToleradas() + 2) >= horasDeSolPorDia) && (self.cantidadDePlantas() < self.cantidadMaximaDePlantasToleradas())
+>>>>>>> origin/ParcelasYParcelasIdeales
   
   method plantar(unaPlanta) {
     if (self.puedePlantar(unaPlanta)) {
@@ -33,6 +41,7 @@ class Parcela {
     } else {
       return "error"
     }
+<<<<<<< HEAD
 
     
   }
@@ -62,3 +71,13 @@ class ParcelaIndustrial inherits Parcela {
   
   override method puedePlantar(unaPlanta) = super(unaPlanta) and self.sePuedeAsociarA(unaPlanta)
 }
+=======
+  }
+
+  method ningunaPlantaSuperaAlturaDe(unaAltura) = plantas.isEmpty() or !plantas.any(
+    { p => p.altura() > unaAltura } 
+  ) 
+
+}
+
+>>>>>>> origin/ParcelasYParcelasIdeales

@@ -20,12 +20,12 @@ class Parcela {
                                                 ) + largo
   
   method tieneComplicaciones() = plantas.any(
-    { p => p.horasDeSolQueTolera() < horasDeSolPorDia }
+    { p => p.horasDeSolToleradas() < horasDeSolPorDia }
   )
   
   method puedePlantar(
     unaPlanta
-  ) = ((unaPlanta.horasDeSolQueTolera() + 2) >= horasDeSolPorDia) && (self.cantidadDePlantas() < self.cantidadMaximaDePlantasToleradas())
+  ) = ((unaPlanta.horasDeSolToleradas() + 2) >= horasDeSolPorDia) && (self.cantidadDePlantas() < self.cantidadMaximaDePlantasToleradas())
   
   method plantar(unaPlanta) {
     if (self.puedePlantar(unaPlanta)) {
@@ -34,5 +34,10 @@ class Parcela {
       return "error"
     }
   }
+
+  method ningunaPlantaSuperaAlturaDe(unaAltura) = plantas.isEmpty() or !plantas.any(
+    { p => p.altura() > unaAltura } 
+  ) 
+
 }
 
